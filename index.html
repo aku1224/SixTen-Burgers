@@ -1,197 +1,622 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SixTen Burgers</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { 
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: #fff;
-  text-align: center;
-}
-.container {
-  padding: 40px 20px;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.logo {
-  width: 260px;
-  margin-bottom: 20px;
-}
-h1 {
-  font-size: 34px;
-  margin-bottom: 10px;
-}
-.tagline {
-  font-size: 18px;
-  color: #ff4d00;
-  margin-bottom: 15px;
-}
-p {
-  font-size: 16px;
-  opacity: 0.9;
-  line-height: 1.5;
-}
-.location {
-  margin-top: 20px;
-  font-size: 15px;
-  line-height: 1.6;
-  background: #111;
-  padding: 15px;
-  border-radius: 8px;
-}
-.countdown-box {
-  margin: 25px 0;
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 10px;
-  padding: 20px;
-}
-.countdown-label {
-  font-size: 15px;
-  color: #ff4d00;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-#countdown {
-  font-size: 28px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-.menu {
-  margin: 25px 0;
-  font-size: 16px;
-  line-height: 1.8;
-}
-.highlight {
-  color: #ff4d00;
-  font-weight: bold;
-}
-.form {
-  margin-top: 25px;
-}
-input {
-  width: 90%;
-  max-width: 350px;
-  padding: 12px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 6px;
-}
-button {
-  width: 95%;
-  max-width: 370px;
-  padding: 14px;
-  background: #ff4d00;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-button:hover {
-  background: #ff2f00;
-}
-.small {
-  font-size: 12px;
-  opacity: 0.6;
-  margin-top: 12px;
-  line-height: 1.5;
-}
-.footer {
-  margin-top: 30px;
-  font-size: 13px;
-  opacity: 0.5;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SixTen Burgers</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 94, 19, 0.18), transparent 28%),
+        linear-gradient(180deg, #101010 0%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrapper {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      padding: 28px 20px 70px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.88)),
+        radial-gradient(circle at center, rgba(255, 94, 19, 0.14), transparent 42%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .top-badge {
+      display: inline-block;
+      background: rgba(255, 94, 19, 0.14);
+      color: #ff7a2f;
+      border: 1px solid rgba(255, 122, 47, 0.35);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 230px;
+      max-width: 75%;
+      display: block;
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 0 26px rgba(255, 94, 19, 0.5));
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #dddddd;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-highlight {
+      color: #ff7a2f;
+      font-weight: bold;
+    }
+
+    .hero-buttons {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #ff6a1a 0%, #e24d00 100%);
+      color: white;
+      box-shadow: 0 10px 28px rgba(255, 94, 19, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 52px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      margin: 0 0 12px;
+    }
+
+    .section-text {
+      text-align: center;
+      color: #cfcfcf;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 16px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.22);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .accent {
+      color: #ff7a2f;
+    }
+
+    .location-box p {
+      margin: 8px 0;
+      color: #e7e7e7;
+      line-height: 1.7;
+    }
+
+    .countdown-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 122, 47, 0.12), transparent 55%);
+      pointer-events: none;
+    }
+
+    .countdown-label {
+      color: #ff7a2f;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .countdown-title {
+      font-size: 28px;
+      margin: 0 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .countdown-subtext {
+      color: #dddddd;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 16px 10px;
+      text-align: center;
+      animation: glowPulse 2.2s infinite ease-in-out;
+    }
+
+    .time-box:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .time-box:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .time-box:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .time-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .time-label {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #cfcfcf;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .countdown-note {
+      color: #bdbdbd;
+      font-size: 12px;
+      margin-top: 16px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 0 rgba(255, 122, 47, 0);
+        transform: translateY(0px);
+      }
+      50% {
+        box-shadow: 0 0 18px rgba(255, 122, 47, 0.18);
+        transform: translateY(-2px);
+      }
+      100% {
+        box-shadow: 0 0 0 rgba(255, 122, 47, 0);
+        transform: translateY(0px);
+      }
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .menu-item {
+      background: linear-gradient(180deg, rgba(255, 94, 19, 0.09), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .menu-item .emoji {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .menu-item h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .menu-item p {
+      margin: 0;
+      color: #d0d0d0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .vip-section {
+      padding-top: 20px;
+    }
+
+    .vip-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .vip-benefits {
+      display: grid;
+      gap: 14px;
+    }
+
+    .benefit {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 16px;
+      color: #efefef;
+      line-height: 1.6;
+    }
+
+    .benefit strong {
+      color: #ff7a2f;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #c8c8c8;
+    }
+
+    input:focus {
+      border-color: rgba(255, 122, 47, 0.7);
+      box-shadow: 0 0 0 3px rgba(255, 122, 47, 0.12);
+    }
+
+    .submit-btn {
+      padding: 15px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #ff6a1a 0%, #e24d00 100%);
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(255, 94, 19, 0.28);
+    }
+
+    .small-text {
+      color: #bfbfbf;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .footer {
+      padding: 28px 20px 40px;
+      text-align: center;
+      color: #9e9e9e;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .two-col,
+      .vip-grid,
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .countdown-title {
+        font-size: 24px;
+      }
+
+      .logo {
+        width: 190px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
+  <div class="wrapper">
 
-<img src="logo.jpg" class="logo" alt="SixTen Burgers Logo">
+    <section class="hero">
+      <div class="top-badge">Houston Comfort Food Is Coming</div>
 
-<h1>SixTen Burgers 🍔</h1>
+      <img src="logo.png" class="logo" alt="SixTen Burgers Logo" />
 
-<div class="tagline">
-Houston Comfort Food. Big Flavor. No Shortcuts.
-</div>
+      <h1>Big Flavor Is Coming to MLK</h1>
 
-<p>
-We’re bringing something different to Houston.<br>
-Join the VIP list for grand opening updates and a chance to get <span class="highlight">FREE fries</span>.
-</p>
+      <p class="hero-subtitle">
+        Welcome to <span class="hero-highlight">SixTen Burgers</span>, your new neighborhood spot for
+        smash burgers, tacos, wings, loaded potatoes, gourmet hot dogs, salads, sandwiches,
+        vegan burgers, and desserts.
+      </p>
 
-<div class="location">
-📍 Former Stuffed Potato Factory<br><br>
-6362 Martin Luther King Blvd, Suite A<br>
-Houston, Texas 77021
-</div>
+      <div class="hero-buttons">
+        <a href="#vip" class="btn btn-primary">Join the VIP List</a>
+        <a href="#menu" class="btn btn-secondary">See What We’ll Have</a>
+      </div>
+    </section>
 
-<div class="countdown-box">
-  <div class="countdown-label">Target Grand Opening Countdown</div>
-  <div id="countdown">Loading countdown...</div>
-</div>
+    <section class="section">
+      <div class="two-col">
+        <div class="card location-box">
+          <h3><span class="accent">Now Coming To</span> The Former Stuffed Potato Factory</h3>
+          <p><strong>SixTen Burgers</strong></p>
+          <p>6362 Martin Luther King Blvd, Suite A</p>
+          <p>Houston, Texas 77021</p>
+          <p>
+            We’re bringing a bold mix of comfort food favorites to the neighborhood with
+            fresh flavor, late-night energy, and real variety.
+          </p>
+        </div>
 
-<div class="menu">
-🔥 Smash Burgers<br>
-🌮 Tacos<br>
-🍗 Wings<br>
-🥔 Loaded Potatoes<br>
-🌭 Gourmet Hot Dogs<br>
-🥗 Salads<br>
-🥪 Sandwiches<br>
-🌱 Vegan Burgers<br>
-🍰 Desserts
-</div>
+        <div class="card countdown-box">
+          <div class="countdown-label">Target Grand Opening Countdown</div>
+          <h3 class="countdown-title">The Countdown Is On</h3>
+          <p class="countdown-subtext">
+            We’re getting closer to opening day. Join the VIP list now so you do not miss
+            opening updates, special offers, and launch-day announcements.
+          </p>
 
-<p>
-Be first to know when we open, what specials are dropping, and when VIP offers go live.
-</p>
+          <div class="timer-grid">
+            <div class="time-box">
+              <div class="time-number" id="days">00</div>
+              <div class="time-label">Days</div>
+            </div>
+            <div class="time-box">
+              <div class="time-number" id="hours">00</div>
+              <div class="time-label">Hours</div>
+            </div>
+            <div class="time-box">
+              <div class="time-number" id="minutes">00</div>
+              <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-box">
+              <div class="time-number" id="seconds">00</div>
+              <div class="time-label">Seconds</div>
+            </div>
+          </div>
 
-<div class="form">
-<form action="https://formspree.io/f/yourformid" method="POST">
-<input type="text" name="name" placeholder="Your Name" required><br>
-<input type="email" name="email" placeholder="Email Address" required><br>
-<input type="tel" name="phone" placeholder="Cell Number" required><br>
-<button type="submit">JOIN THE VIP LIST</button>
-</form>
-</div>
+          <div class="countdown-note">
+            Target opening date is May 15, 2026 and subject to final confirmation.
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p class="small">
-By entering your number, you agree to receive text updates and promotional offers from SixTen Burgers. Target opening date is subject to final confirmation.
-</p>
+    <section class="section" id="menu">
+      <h2 class="section-title">What We’ll Have</h2>
+      <p class="section-text">
+        SixTen Burgers is built for people who want options, flavor, and comfort food done right.
+      </p>
 
-<div class="footer">
-© SixTen Burgers · Houston, TX
-</div>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <span class="emoji">🍔</span>
+          <h4>Smash Burgers</h4>
+          <p>Juicy, flavorful burgers with crisp edges and bold house flavor.</p>
+        </div>
 
-</div>
+        <div class="menu-item">
+          <span class="emoji">🌮</span>
+          <h4>Tacos</h4>
+          <p>Street-style comfort with savory fillings and satisfying flavor.</p>
+        </div>
 
-<script>
-const targetDate = new Date("May 15, 2026 11:00:00").getTime();
+        <div class="menu-item">
+          <span class="emoji">🍗</span>
+          <h4>Wings</h4>
+          <p>Perfect for snack runs, game days, and late-night cravings.</p>
+        </div>
 
-const countdownFunction = setInterval(function() {
-  const now = new Date().getTime();
-  const distance = targetDate - now;
+        <div class="menu-item">
+          <span class="emoji">🥔</span>
+          <h4>Loaded Potatoes</h4>
+          <p>Hearty, filling, and stacked with comfort-food energy.</p>
+        </div>
 
-  if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.getElementById("countdown").innerHTML = "We’re getting very close. Join the VIP list for the official opening date.";
-    return;
-  }
+        <div class="menu-item">
+          <span class="emoji">🌭</span>
+          <h4>Gourmet Hot Dogs</h4>
+          <p>Classic comfort with upgraded flavor and signature toppings.</p>
+        </div>
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        <div class="menu-item">
+          <span class="emoji">🥗</span>
+          <h4>Salads</h4>
+          <p>Fresh options for guests who want something lighter but still good.</p>
+        </div>
 
-  document.getElementById("countdown").innerHTML =
-    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-}, 1000);
-</script>
+        <div class="menu-item">
+          <span class="emoji">🥪</span>
+          <h4>Sandwiches</h4>
+          <p>Warm, satisfying bites made for lunch, dinner, and everything between.</p>
+        </div>
 
+        <div class="menu-item">
+          <span class="emoji">🌱</span>
+          <h4>Vegan Burgers</h4>
+          <p>Plant-based options that still bring flavor and comfort.</p>
+        </div>
+
+        <div class="menu-item">
+          <span class="emoji">🍰</span>
+          <h4>Desserts</h4>
+          <p>A sweet finish for guests who want more than just the meal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section vip-section" id="vip">
+      <div class="vip-grid">
+        <div class="card">
+          <h3>Why Join the <span class="accent">VIP List</span>?</h3>
+
+          <div class="vip-benefits">
+            <div class="benefit">
+              <strong>Grand opening alerts:</strong> be among the first to know when doors officially open.
+            </div>
+            <div class="benefit">
+              <strong>Special offers:</strong> get updates on free fries offers, opening promotions, and featured drops.
+            </div>
+            <div class="benefit">
+              <strong>Direct updates:</strong> we’ll keep you posted by email or text so you do not miss the launch.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Join the VIP List</h3>
+          <p style="color:#d6d6d6; line-height:1.7; margin-top:0;">
+            Sign up now to get grand opening updates, special offers, and opening-day announcements.
+          </p>
+
+          <form action="https://formspree.io/f/yourformid" method="POST">
+            <input type="text" name="name" placeholder="First Name" required />
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="tel" name="phone" placeholder="Cell Number" required />
+            <button type="submit" class="submit-btn">GET VIP ACCESS</button>
+          </form>
+
+          <p class="small-text">
+            We’ll only text or email you about SixTen Burgers updates, specials, and grand opening offers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © SixTen Burgers · Houston, Texas
+    </div>
+  </div>
+
+  <script>
+    const targetDate = new Date("May 15, 2026 11:00:00").getTime();
+
+    const countdownFunction = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = String(days).padStart(2, "0");
+      document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
+      document.getElementById("minutes").innerHTML = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").innerHTML = String(seconds).padStart(2, "0");
+    }, 1000);
+  </script>
 </body>
 </html>
