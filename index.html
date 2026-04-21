@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SixTen Burgers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+.container {
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.logo {
+  width: 260px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+.tagline {
+  font-size: 18px;
+  color: #ff4d00;
+  margin-bottom: 15px;
+}
+p {
+  font-size: 16px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+.location {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  background: #111;
+  padding: 15px;
+  border-radius: 8px;
+}
+.countdown-box {
+  margin: 25px 0;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 20px;
+}
+.countdown-label {
+  font-size: 15px;
+  color: #ff4d00;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+#countdown {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+.menu {
+  margin: 25px 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.highlight {
+  color: #ff4d00;
+  font-weight: bold;
+}
+.form {
+  margin-top: 25px;
+}
+input {
+  width: 90%;
+  max-width: 350px;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+}
+button {
+  width: 95%;
+  max-width: 370px;
+  padding: 14px;
+  background: #ff4d00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #ff2f00;
+}
+.small {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+.footer {
+  margin-top: 30px;
+  font-size: 13px;
+  opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<img src="logo.png" class="logo" alt="SixTen Burgers Logo">
+
+<h1>SixTen Burgers 🍔</h1>
+
+<div class="tagline">
+Houston Comfort Food. Big Flavor. No Shortcuts.
+</div>
+
+<p>
+We’re bringing something different to Houston.<br>
+Join the VIP list for grand opening updates and a chance to get <span class="highlight">FREE fries</span>.
+</p>
+
+<div class="location">
+📍 Former Stuffed Potato Factory<br><br>
+6362 Martin Luther King Blvd, Suite A<br>
+Houston, Texas 77021
+</div>
+
+<div class="countdown-box">
+  <div class="countdown-label">Target Grand Opening Countdown</div>
+  <div id="countdown">Loading countdown...</div>
+</div>
+
+<div class="menu">
+🔥 Smash Burgers<br>
+🌮 Tacos<br>
+🍗 Wings<br>
+🥔 Loaded Potatoes<br>
+🌭 Gourmet Hot Dogs<br>
+🥗 Salads<br>
+🥪 Sandwiches<br>
+🌱 Vegan Burgers<br>
+🍰 Desserts
+</div>
+
+<p>
+Be first to know when we open, what specials are dropping, and when VIP offers go live.
+</p>
+
+<div class="form">
+<form action="https://formspree.io/f/yourformid" method="POST">
+<input type="text" name="name" placeholder="Your Name" required><br>
+<input type="email" name="email" placeholder="Email Address" required><br>
+<input type="tel" name="phone" placeholder="Cell Number" required><br>
+<button type="submit">JOIN THE VIP LIST</button>
+</form>
+</div>
+
+<p class="small">
+By entering your number, you agree to receive text updates and promotional offers from SixTen Burgers. Target opening date is subject to final confirmation.
+</p>
+
+<div class="footer">
+© SixTen Burgers · Houston, TX
+</div>
+
+</div>
+
+<script>
+const targetDate = new Date("May 15, 2026 11:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("countdown").innerHTML = "We’re getting very close. Join the VIP list for the official opening date.";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+}, 1000);
+</script>
+
+</body>
+</html>
